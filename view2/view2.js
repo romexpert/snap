@@ -9,6 +9,8 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
-
-}]);
+    .controller('View2Ctrl', function ($rootScope, $location) {
+    if (!$rootScope.user) {
+        $location.path("/view1");
+    }
+});

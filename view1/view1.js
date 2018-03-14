@@ -9,14 +9,19 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-    .controller('View1Ctrl', function ($scope, $http) {
+    .controller('View1Ctrl', function ($scope, $rootScope, $location, $http) {
         $scope.user = {};
 
         $scope.login = function(){
             $http.post('/mocks/login.php', $scope.user)
                 .then(() => {
                     console.log('success');
+                    $rootScope.user = $scope.user;
+                    $location.path("/view2");
                 },
-                () => { console.log('fail');});
+                () => {
+                    $rootScope.user = null;
+                    alert("Login failed");
+                });
         }
 });
