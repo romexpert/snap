@@ -13,7 +13,7 @@ angular.module('myApp.view1', ['ngRoute'])
         $scope.user = {};
 
         $scope.login = function(){
-            $http.post('login', $scope.user)
+            $http.post('/mocks/login.php', $scope.user)
                 .then(() => {
                     console.log('success');
                 },
